@@ -41,6 +41,7 @@ class RedundantSuspendModifierInspection : AbstractKotlinInspection() {
 
                 val suspendModifier = function.modifierList?.getModifier(KtTokens.SUSPEND_KEYWORD) ?: return
                 if (!function.hasBody()) return
+                if (function.hasModifier(KtTokens.OVERRIDE_KEYWORD)) return
 
                 val context = function.analyzeFully()
 
